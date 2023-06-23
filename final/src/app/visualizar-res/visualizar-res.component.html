@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Visualização de Reservas de Laboratórios</title>
+    <style>
+        /* Estilos CSS para a tabela */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>Reservas de Laboratórios do CTBJ</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Lab</th>
+                <th>Professor</th>
+                <th>Data e Hora</th>
+                <th>Aluno</th>
+                <th>Ocorrências</th>
+                <th>Entrega</th>
+                <th>Recebimento</th>
+            </tr>
+        </thead>
+        <tbody id="reservations-body"></tbody>
+    </table>
+
+    <script>
+        // Dados da lista JSON
+        const reservations = [
+            // ... lista JSON fornecida ...
+        ];
+
+        // Função para formatar a data e hora
+        function formatDateTime(dateTimeStr) {
+            const dateTime = new Date(dateTimeStr);
+            return dateTime.toLocaleString();
+        }
+
+        // Função para renderizar as reservas na tabela
+        function renderReservations() {
+            const reservationsBody = document.getElementById('reservations-body');
+
+            reservations.forEach(reservation => {
+                const row = document.createElement('tr');
+
+                // Colunas da tabela
+                const columns = [
+                    reservation.id,
+                    reservation.sala.nome.trim(),
+                    reservation.usuario_professor.nome.trim(),
+                    formatDateTime(reservation.data_hora),
+                    reservation.aluno_nome || '-',
+                    reservation.ocorrencias.length,
+                    reservation.usuario_entrega ? reservation.usuario_entrega.nome.trim() : '-',
+                    reservation.usuario_recebe ? reservation.usuario_recebe.nome.trim() : '-'
+                ];
+
+                columns.forEach(columnData => {
+                    const cell = document.createElement('td');
+                    cell.textContent = columnData;
+                    row.appendChild(cell);
+                });
+
+                reservationsBody.appendChild(row);
+            });
+        }
+
+        // Renderizar as reservas na carga inicial da página
+        renderReservations();
+    </script>
+</body>
+</html>

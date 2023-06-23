@@ -1,0 +1,30 @@
+<h1>Solicitação de Uso de Laboratório</h1>
+<div>
+<form (ngSubmit)="submitForm()">
+ 
+<label for="nome" style="font-size: x-large;">Aluno:</label>
+<input type="text" id="nome" name="nome" [(ngModel)]="nome" required><br><br>
+
+<label for="matricula" style="font-size: x-large;">Matrícula:</label>
+<input type="text" id="matricula" name="matricula" [(ngModel)]="matricula" required><br><br>
+
+<label for="email" style="font-size: x-large;">E-mail:</label>
+<input type="text" id="email" name="email" [(ngModel)]="email" required><br><br>
+
+  <label for="lab" style="font-size: x-large;">Laboratório:</label>
+  
+<select name="lab" id="lab" [(ngModel)]="lab" required>
+    <option value="01">Laboratório 01</option>
+    <option value="02">Laboratório 02</option>
+    <option value="Robótica">Laboratório Robótica</option>
+    <option value="Manutenção">Laboratório Manutenção</option>
+</select>
+  
+<p>
+  <label for="data" style="font-size: x-large;">Data:</label>  
+<input type="datetime-local" id="data" name="data" [(ngModel)]="data" required><br><br>
+</p>
+
+<div class="example-button-row">
+<button type="submit" mat-raised-button color="accent" >Enviar</button>
+</div>
